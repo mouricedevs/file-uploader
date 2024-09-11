@@ -31,6 +31,6 @@ VERCEL PROCESS:
     4: Enter project name, env variables.
     5: And JUST CLICK "Deploy". 
 ```
-***Here's an Example [`VERCEL OUTPUT`](https://file-uploader-azure.vercel.app).***
+***Here's an Example [`LIVE OUTPUT`](https://api.giftedtechnexus.co.ke/upload).***
 
 ---
