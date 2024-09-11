@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gifted File Uploader - Easily upload files with a user-friendly interface. Supports all file types.">
+  <meta property="og:title" content="Gifted File Uploader">
+  <meta property="og:description" content="Upload files quickly and easily with Gifted. Supports all file types.">
+  <meta property="og:image" content="https://telegra.ph/file/c2a4d8d65722553da4c89.jpg">
+  <meta property="og:url" content="https://yourwebsite.com/upload">
+  <title>Gifted File Uploader</title>
+  <link rel="icon" href="https://telegra.ph/file/c2a4d8d65722553da4c89.jpg" type="image/x-icon">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: url('https://files.catbox.moe/ft93w4.mp4') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 60px;
+      box-shadow: 0 4px 8px rgba(0.5, 0.5, 0.5, 1.0);
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      animation: colorChange 5s infinite alternate;
+    }
+    @keyframes colorChange {
+      0% { color: #ff0000; }
+      25% { color: #00ff00; }
+      50% { color: #0000ff; }
+      75% { color: #ffff00; }
+      100% { color: #ff00ff; }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="file"] {
+      padding: 10px;
+      border-radius: 10px;
+    }
+    button {
+      background-color: #007bff;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #0056b3;
+      background-color: 20px;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    .footer {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #555;
+    }
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+    .round-image {
+      width: 50px; /* Set width for the image */
+      height: 50px; /* Set height for the image */
+      border-radius: 70%; /* Make the image round */
+      object-fit: cover; /* Ensure image covers the circle */
+    }
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      justify-content: center; /* Center marquee text */
+    }
+    .marquee p {
+      display: inline-block;
+      padding: 0;
+      animation: marquee 8s linear infinite;
+    }
+    @keyframes marquee {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <!-- Background video -->
+  <video class="video-bg" autoplay muted loop>
+    <source src="https://files.catbox.moe/ft93w4.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div class="container">
+    <div class="flex justify-center mb-4">
+      <img src="https://telegra.ph/file/c2a4d8d65722553da4c89.jpg" alt="Gifted Tech" class="round-image">
+    </div>
+    <h1 class="color-change"><b>Free File Uploader</b></h1>
+    <div class="marquee mb-6">
+      <p style="color: black;"><b>A Simple Yet Powerful All File Uploader</b></p>
+    </div>
+    <form id="upload-form" enctype="multipart/form-data">
+      <div class="form-group">
+        <input type="file" id="file" name="file" />
+        <button type="submit">Upload</button>
+      </div>
+    </form>
+    <p id="result"></p>
+    <div class="footer">
+        <p><i>Upload Upto 200Mbs, NO Expiry</i></p>
+      <p><b>NB:</b> <i>Supports All File Types Except (.exe, .scr, .cpl, .doc*, .jar)</i></p>
+      <a href="https://api.giftedtechnexus.co.ke/api/tools/upload" class="text-blue-500"><b>See Api Endpoint</b></a> </br> </br>
+      <a href="https://github.com/mouricedevs" class="text-blue-500 hover:underline"><b>©2024 Gifted Tech 💜</b></a>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('upload-form').addEventListener('submit', async function (e) {
+      e.preventDefault();
+      
+      const fileInput = document.getElementById('file');
+      if (!fileInput.files.length) {
+        Swal.fire({
+          title: 'Error',
+          text: 'Please Select a File',
+          icon: 'error'
+        });
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+
+      // Show "Please Wait" alert
+      const pleaseWaitAlert = Swal.fire({
+        title: 'Please Wait',
+        text: 'Gifted is Uploading Your File...',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        didOpen: () => Swal.showLoading()
+      });
+
+      try {
+        const response = await fetch('https://api.giftedtechnexus.co.ke/api/tools/upload', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const result = await response.json();
+        
+        if (result.success) {
+          // Close the "Please Wait" alert and show success message
+          pleaseWaitAlert.close();
+          Swal.fire({
+            title: 'Done',
+            text: `File Successfully Uploaded!`,
+            icon: 'success',
+            html: `
+              <p><strong>File Name:</strong> ${fileInput.files[0].name}</p>
+              <p><strong>File Size:</strong> ${(fileInput.files[0].size / 1024).toFixed(2)} KB</p>
+              <p><strong>File URL:</strong> ${result.result}</p>
+              <p><strong>Expiration:</strong> No Expiry</p>
+              <button onclick="copyLink('${result.result}')">Copy File Link</button>
+            `,
+            showConfirmButton: false,
+            allowOutsideClick: false
+          });
+        } else {
+          Swal.fire({
+            title: 'Error',
+            text: `Error: ${result.error}`,
+            icon: 'error'
+          });
+        }
+      } catch (error) {
+        Swal.fire({
+          title: 'Error',
+          text: 'An error occurred during upload.',
+          icon: 'error'
+        });
+      }
+    });
+
+    function copyLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        Swal.fire('Copied!', 'File link has been copied to clipboard.', 'success');
+      });
+    }
+  </script>
+</body>
+</html>
