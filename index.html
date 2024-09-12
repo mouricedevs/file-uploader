@@ -169,7 +169,7 @@
           body: formData,
         });
 
-        const result = await res.text();
+        const result = await response.text();
         
         if (response.ok) {
           // Close the "Please Wait" alert and show success message
@@ -181,9 +181,9 @@
             html: `
               <p><strong>File Name:</strong> ${fileInput.files[0].name}</p>
               <p><strong>File Size:</strong> ${(fileInput.files[0].size / 1024).toFixed(2)} KB</p>
-              <p><strong>File URL:</strong> ${result.result}</p>
+              <p><strong>File URL:</strong> ${result}</p>
               <p><strong>Expiration:</strong> No Expiry</p>
-              <button onclick="copyLink('${result.result}')">Copy File Link</button>
+              <button onclick="copyLink('${result}')">Copy File Link</button>
             `,
             showConfirmButton: false,
             allowOutsideClick: false
