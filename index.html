@@ -164,14 +164,14 @@
       });
 
       try {
-        const response = await fetch('https://api.giftedtechnexus.co.ke/api/tools/upload', {
+        const response = await fetch('https://catbox.moe/user/api.php', {
           method: 'POST',
           body: formData,
         });
 
-        const result = await response.json();
+        const result = await res.text();
         
-        if (result.success) {
+        if (response.ok) {
           // Close the "Please Wait" alert and show success message
           pleaseWaitAlert.close();
           Swal.fire({
