@@ -1,7 +1,7 @@
 
 ### Free File Uploader
 
-- Based on **[Gifted-Api](https://api.giftedtechnexus.co.ke)**
+- Based on **[Gifted-Api](https://giftedapis.us.kg)**
 
 ---
 
@@ -16,7 +16,7 @@
 ---
 
 ### Docs:
-- Here's [Live Web Version](https://api.giftedtechnexus.co.ke/upload)
+- Here's [Live Web Version](https://giftedapis.us.kg/upload)
 
 - Here is free [Api Endpoint](https://api.giftedtechnexus.co.ke/api/tools/upload) for developers....method - POST
 - For how to use the endpoint [Get Help](https://t.me/mouricedevs)
