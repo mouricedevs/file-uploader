@@ -1,4 +1,3 @@
-
 ### Free File Uploader
 
 - Based on **[Gifted-Api](https://api.giftedtech.us.kg)**
